@@ -1,0 +1,34 @@
+GET http://localhost:3000/api/list
+
+###
+
+GET http://localhost:3000/api/list/5e825c282553df262411ba6a
+
+###
+
+POST http://localhost:3000/api/list
+Content-Type: application/json
+
+{
+  "member": "5e825a382d8de9170c5fa37f",
+  "offering": "5e815986d6d59e0bdcb4fda6",
+  "quantity": 10
+}
+
+###
+
+PUT http://localhost:3000/api/list/5d295f53775f250ed4c5240b
+Content-Type: application/json
+
+{
+  "quantity": 50
+}
+
+###
+
+DELETE  http://localhost:3000/api/list/5e825c282553df262411ba6a
+Content-Type: application/json
+
+{
+  "id": "5e825c282553df262411ba6as"
+}
