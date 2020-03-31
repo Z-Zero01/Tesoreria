@@ -9,15 +9,19 @@ let listSchema = new Schema({
         required: true
     },
 
-    offering: {
-        type: Schema.Types.ObjectId,
-        ref: 'Offering',
-    },
-
-    quantity: {
-        type: Number,
-        default: 0
-    },
+    offerings: [
+        {
+            name: {
+                type: Schema.Types.ObjectId,
+                ref: 'Offering',
+            },
+            quantity: {
+                    type: Number,
+                    default: 0
+            }
+            
+        },
+    ],
 
     date: {
         type: Date,

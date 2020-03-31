@@ -3,7 +3,7 @@ GET http://localhost:3000/api/members
 
 ###
 
-GET http://localhost:3000/api/members/5e815986d6d59e0bdcb4fda6
+GET http://localhost:3000/api/members/5e8266df039bb216789e10b6
 Content-Type: application/json
 
 {
@@ -26,8 +26,8 @@ PUT http://localhost:3000/api/members
 Content-Type: application/json
 
 {
-  "id": "5e813f471570d22368bdfe05",
-  "name": "Brian Iván Zaragoza Fierro"
+  "id": "5e8266df039bb216789e10b6",
+  "name": "Bro"
 }
 
 ###
@@ -36,7 +36,7 @@ DELETE http://localhost:3000/api/members
 Content-Type: application/json
 
 {
-  "id": "5e81590f03dde51a1cacbb8b"
+  "id": "5e8263de039bb216789e10b5"
 }
  
 

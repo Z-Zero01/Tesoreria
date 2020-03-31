@@ -7,8 +7,10 @@ app.get('/list', (req, res) => {
 
     List.find()
         .sort('-date')
+        .populate(
+            'offerings.name',
+        )
         .populate('member', 'nombre')
-        .populate('offering', 'name')
         .exec( (err, lists) => {
             
             if (err) {
@@ -29,11 +31,14 @@ app.get('/list', (req, res) => {
 
 app.get('/list/:id', (req, res) => {
 
-    let { id } = req.params
+    let id= req.params.id
 
     List.findById(id)
         .populate('member', 'nombre')
-        .populate('offering', 'name')
+        .populate({
+            path: 'lists',
+            populate: { path: 'offerings.name' }
+        })
         .then( list => {
             res.json({
                 ok: true,
@@ -48,12 +53,11 @@ app.get('/list/:id', (req, res) => {
 
 app.post('/list', (req, res) => {
 
-    let { member, offering, quantity } = req.body
+    let { member, offerings } = req.body
 
     let list = new List({
         member,
-        offering,
-        quantity
+        offerings
     })
 
     list.save( function listSaved(err, listSaved) {
@@ -81,24 +85,23 @@ app.put('/list/:id', (req, res) => {
 
     const newList = {
         member: body.member,
-        offering: body.offering,
-        quantity: body.quantity
+        offerings: body.offering
     }
 
     List.findByIdAndUpdate(id, newList, {new: true})
             .then( listUpdated => {
-            res.json({
-                ok: true,
-                listUpdated
-            })
+                res.json({
+                    ok: true,
+                    listUpdated
+                })
             })
             .catch( err => {
-            if (err) throw err
+                if (err) throw err
             })
 
 })
 
-app.delete('/list/:id', (req, res) => {
+app.delete('/list', (req, res) => {
 
     let { id } = req.body
 
